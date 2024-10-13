@@ -708,7 +708,7 @@ if(BUILD_SHARED_LIB)
         target_link_libraries(${DYNAMIC_LIB_NAME} ${CURL_LIBRARIES})
     endif()
 
-    target_include_directories(${STATIC_LIB_NAME} PUBLIC ${PUBLIC_ZT_HEADERS})
+    target_include_directories(${DYNAMIC_LIB_NAME} PUBLIC ${PUBLIC_ZT_HEADERS})
 endif() # BUILD_SHARED_LIB
 
 # xcode framework
@@ -768,10 +768,10 @@ endif()
 # ------------------------------------------------------------------------------
 
 if (ALLOW_INSTALL_TARGET)
-    set_target_properties(${STATIC_LIB_NAME} PROPERTIES PUBLIC_HEADER
-        "${PUBLIC_ZT_HEADERS}/ZeroTierSockets.h")
-
     if (BUILD_STATIC_LIB)
+        set_target_properties(${STATIC_LIB_NAME} PROPERTIES PUBLIC_HEADER
+            "${PUBLIC_ZT_HEADERS}/ZeroTierSockets.h")
+
         install(
             TARGETS ${STATIC_LIB_NAME}
             LIBRARY DESTINATION lib
